@@ -4,9 +4,9 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def health():
-return "OK-20260201-AAAA"
+    return "OK"
 
 @app.route("/update_bookoff_stock", methods=["POST"])
 def update_bookoff_stock():
-data = request.json
-return jsonify({"status": "ok", "received": data})
+    data = request.get_json(silent=True) or {}
+    return jsonify({"status": "ok", "received": data})
